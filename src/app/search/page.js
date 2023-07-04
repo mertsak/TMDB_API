@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const Search = () => {
   const { searchMovie } = useSelector((state) => state.tmdb);
 
+  // metin ... ekleme truncate
   const truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   };
@@ -13,6 +14,7 @@ const Search = () => {
   return (
     <section className="w-full wrapper pt-[30px]">
       <div className="flex justify-start items-start gap-8">
+        {/* Search Page Nav */}
         <div className="basis-1/4 w-full max-w-[275px]">
           <ul className="flex flex-col justify-between items-start w-full rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
             <li className="h-10 flex font-semibold justify-start items-center bg-[#01B4E4] text-white rounded-t-lg w-full p-8 pl-6">
@@ -42,6 +44,7 @@ const Search = () => {
           </ul>
         </div>
 
+        {/* Search Page Movies List */}
         <div className="w-full flex flex-col justify-center items-start gap-8 basis-3/4">
           {searchMovie.results?.map((movie) => (
             <Link

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// All Trend Movies
 export const fetchTrendMovies = createAsyncThunk(
   "tmdb/fetchTrendMovies",
   async () => {
@@ -18,6 +19,7 @@ export const fetchTrendMovies = createAsyncThunk(
   }
 );
 
+// Search Movie
 export const fetchSearchMovie = createAsyncThunk(
   "tmdb/fetchSearchMovie",
   async (movie) => {
@@ -35,6 +37,7 @@ export const fetchSearchMovie = createAsyncThunk(
   }
 );
 
+// Single Movie
 export const fetchSingleMovie = createAsyncThunk(
   "tmdb/fetchSingleMovie",
   async (id) => {
@@ -49,5 +52,24 @@ export const fetchSingleMovie = createAsyncThunk(
       }
     );
     return singleMovie.data;
+  }
+);
+
+// Single Movie Credits
+export const fetchMovieCredits = createAsyncThunk(
+  "tmdb/fetchMovieCredits",
+  async (id) => {
+    const movieCredits = await axios.get(
+      `
+      https://api.themoviedb.org/3/movie/${id}/credits`,
+      {
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NTlmMThhNjJlNWU3NzliNGY3OWYyYzlmNjZkOTI3NSIsInN1YiI6IjYyMWJiYjM2NDM5YmUxMDAxYmI3MzJlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kIWFL5VjlLoXYggy8SXXKgCXpXSk8JgmDvy82HIN5vw",
+        },
+      }
+    );
+    return movieCredits.data;
   }
 );

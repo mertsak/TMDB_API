@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import {
   fetchTrendMovies,
   fetchSearchMovie,
   fetchSingleMovie,
+  fetchMovieCredits,
 } from "./services/service";
 
 export const tmdbSlice = createSlice({
@@ -14,6 +14,7 @@ export const tmdbSlice = createSlice({
     searchMovie: [],
     searchData: "",
     singleMovie: [],
+    movieCredits: [],
   },
   reducers: {
     setSearchData: (state, action) => {
@@ -22,6 +23,7 @@ export const tmdbSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    // fetch Trend Movies
     builder.addCase(fetchTrendMovies.pending, (state) => {
       state.status = "loading";
     });
@@ -33,6 +35,7 @@ export const tmdbSlice = createSlice({
       state.status = "failed";
     });
 
+    // fetch Search Movies
     builder.addCase(fetchSearchMovie.pending, (state) => {
       state.status = "loading";
     });
@@ -44,6 +47,7 @@ export const tmdbSlice = createSlice({
       state.status = "failed";
     });
 
+    // fetch Single Movie
     builder.addCase(fetchSingleMovie.pending, (state) => {
       state.status = "loading";
     });
@@ -52,6 +56,18 @@ export const tmdbSlice = createSlice({
       state.singleMovie = action.payload;
     });
     builder.addCase(fetchSingleMovie.rejected, (state) => {
+      state.status = "failed";
+    });
+
+    // fetch Single Movie Credits
+    builder.addCase(fetchMovieCredits.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchMovieCredits.fulfilled, (state, action) => {
+      state.status = "idle";
+      state.movieCredits = action.payload;
+    });
+    builder.addCase(fetchMovieCredits.rejected, (state) => {
       state.status = "failed";
     });
   },
