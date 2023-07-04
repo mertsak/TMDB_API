@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .wrapper {
+    max-width: 1300px;
+    margin: 0 auto !important;
+  }
+
+  .bannerImg {
+    background-image: linear-gradient(
+        to right,
+        rgba(3, 37, 65, 0.8) 0%,
+        rgba(3, 37, 65, 0) 100%
+      ),
+      url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/hPea3Qy5Gd6z4kJLUruBbwAH8Rm.jpg");
+
+    object-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh / 2.5);
+  }
+
+  .searchBg {
+    background: linear-gradient(
+      to right,
+      rgba(30, 213, 169, 1) 0%,
+      rgba(1, 180, 228, 1) 100%
+    );
+  }
+
+  .moviebg {
+    background-image: linear-gradient(
+      to right,
+      rgba(31.5, 10.5, 10.5, 1) calc((50vw - 170px) - 340px),
+      rgba(31.5, 10.5, 10.5, 0.84) 50%,
+      rgba(31.5, 10.5, 10.5, 0.84) 100%
+    );
+  }
+}
